@@ -32,9 +32,3 @@ RUN docker-php-ext-install zip
 RUN docker-php-ext-install gd
 RUN docker-php-ext-install soap
 RUN docker-php-ext-install xsl
-
-#EXPOSE 80:8080
-
-#Como executar
-#docker run -d -v C:\Users\H4\PhpstormProjects\Ancolie-2018\:/var/www/html --net="host" php70-apache
-#verificar ip da maquina real com ip addr e conectar no mysql
