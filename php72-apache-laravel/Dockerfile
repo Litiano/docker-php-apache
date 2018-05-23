@@ -1,4 +1,5 @@
 FROM php:7.2-apache
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN a2enmod rewrite
 
 RUN apt-get update
