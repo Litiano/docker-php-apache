@@ -69,10 +69,10 @@ RUN cd /var/www && \
 
 RUN pecl install xdebug \
     && echo "zend_extension=xdebug.so" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "xdebug.remote_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_host=host.docker.internal" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.remote_port=9000" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.remote_autostart=on" >> /usr/local/etc/php/conf.d/xdebug.ini
+    && echo "xdebug.remote_autostart=0" >> /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN cd /tmp \
     && wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.zip \
