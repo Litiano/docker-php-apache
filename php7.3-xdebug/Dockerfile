@@ -10,3 +10,6 @@ RUN pecl install xdebug \
     && echo "xdebug.profiler_enable_trigger=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.profiler_output_name=cachegrind.out.%t.%p" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.profiler_output_dir=/var/www/html/var/log/xdebug" >> /usr/local/etc/php/conf.d/xdebug.ini
+
+ENV PHP_IDE_CONFIG="serverName=localhost"
+ENV XDEBUG_CONFIG="remote_enable=1"
