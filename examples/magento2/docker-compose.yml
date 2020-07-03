@@ -1,0 +1,48 @@
+version: '3'
+services:
+  web:
+    image: litiano/nginx-magento2
+    ports:
+      - "8080:80"
+    links:
+      - db
+      - php_fpm
+      - php_xdebug
+    env_file:
+      - docker.env
+    volumes:
+      - Magento2.3:/var/www/html
+      - ./log:/var/www/html/var/log
+      #- ./src:/var/www/html/app/code/local/Vendor/Module
+  db:
+    image: mysql:5.7
+    env_file:
+      - docker.env
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "81:80"
+    links:
+      - db
+    env_file:
+      - docker.env
+  php_fpm:
+    image: litiano/php7.3-fpm
+    links:
+      - db
+    volumes:
+      - Magento2.3:/var/www/html
+      - ./log:/var/www/html/var/log
+      - ${appdata}/Composer/auth.json:/root/.composer/auth.json
+      #- ./src:/var/www/html/app/code/local/Vendor/Module
+  php_xdebug:
+    image: litiano/php7.3-xdebug
+    links:
+      - db
+    volumes:
+      - Magento2.3:/var/www/html
+      - ./log:/var/www/html/var/log
+      - ${appdata}/Composer/auth.json:/root/.composer/auth.json
+      #- ./src:/var/www/html/app/code/local/Vendor/Module
+volumes:
+  Magento2.3:
