@@ -25,8 +25,8 @@ composer require --dev smile/module-debug-toolbar
 
 #install Magento2
 bin/magento setup:install \
---base-url=http://127.0.0.1:8080 \
---db-host=db \
+--base-url=http://127.0.0.1:8090 \
+--db-host=mysql \
 --db-name=magento2 \
 --db-user=root \
 --db-password=root \

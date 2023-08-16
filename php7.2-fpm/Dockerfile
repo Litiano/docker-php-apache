@@ -46,12 +46,12 @@ RUN echo "memory_limit=4G" > $PHP_INI_DIR/conf.d/memory-limit.ini
 
 RUN mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-RUN cd /tmp \
-    && wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.zip \
-    && unzip ioncube_loaders_lin_x86-64.zip \
-    && mv ioncube/ioncube_loader_lin_7.2.so /usr/local/lib/php/extensions/ioncube_loader_lin_7.2.so \
-    && echo ";zend_extension=/usr/local/lib/php/extensions/ioncube_loader_lin_7.2.so" > $PHP_INI_DIR/conf.d/00-ioncube.ini \
-    && rm -rf ioncube_loaders_lin_x86-64.zip ioncube
+#RUN cd /tmp \
+#    && wget https://downloads.ioncube.com/loader_downloads/ioncube_loaders_lin_x86-64.zip \
+#    && unzip ioncube_loaders_lin_x86-64.zip \
+#    && mv ioncube/ioncube_loader_lin_7.2.so /usr/local/lib/php/extensions/ioncube_loader_lin_7.2.so \
+#    && echo ";zend_extension=/usr/local/lib/php/extensions/ioncube_loader_lin_7.2.so" > $PHP_INI_DIR/conf.d/00-ioncube.ini \
+#    && rm -rf ioncube_loaders_lin_x86-64.zip ioncube
 
 # install composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

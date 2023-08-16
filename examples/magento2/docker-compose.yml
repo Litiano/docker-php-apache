@@ -5,14 +5,14 @@ services:
     ports:
       - "8080:80"
     links:
-      - db
       - php_fpm
       - php_xdebug
     env_file:
       - docker.env
-    volumes:
+    volumes: &appvolumes
       - Magento2.3:/var/www/html
       - ./log:/var/www/html/var/log
+      - ${appdata}/Composer/auth.json:/root/.composer/auth.json
       #- ./src:/var/www/html/app/code/local/Vendor/Module
   db:
     image: mysql:5.7
@@ -30,19 +30,11 @@ services:
     image: litiano/php7.3-fpm
     links:
       - db
-    volumes:
-      - Magento2.3:/var/www/html
-      - ./log:/var/www/html/var/log
-      - ${appdata}/Composer/auth.json:/root/.composer/auth.json
-      #- ./src:/var/www/html/app/code/local/Vendor/Module
+    volumes: *appvolumes
   php_xdebug:
     image: litiano/php7.3-xdebug
     links:
       - db
-    volumes:
-      - Magento2.3:/var/www/html
-      - ./log:/var/www/html/var/log
-      - ${appdata}/Composer/auth.json:/root/.composer/auth.json
-      #- ./src:/var/www/html/app/code/local/Vendor/Module
+    volumes: *appvolumes
 volumes:
   Magento2.3:
